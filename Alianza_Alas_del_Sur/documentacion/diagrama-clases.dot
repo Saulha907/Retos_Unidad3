@@ -1,0 +1,15 @@
+digraph G {
+graph [rankdir=LR, bgcolor="white", nodesep="0.55", ranksep="0.75", splines=polyline];
+node [shape=record, style=rounded, fontname="Arial", fontsize=11, margin="0.18,0.10", color="#242424"];
+Reserva [label="{Reserva|idGlobal: UUID\laerolineaOrigen: String\lidOrigen: String\lfechaVuelo: Date\lhoraLocal: Time?\lzonaHoraria: String?\l}"];
+Pasajero [label="{Pasajero|nombre: String\lapellido: String\ltipo: Enum\ledad: Integer?\l}"];
+Adulto [label="{Adulto|tipo=ADULTO}"]; Menor [label="{Menor|tipo=MENOR}"]; Infante [label="{Infante|tipo=INFANTE}"];
+Tarifa [label="{Tarifa|importe: Decimal\lmoneda: ISO-4217\l}"];
+Vuelo [label="{Vuelo|numeroVuelo: String\lorigen: String\ldestino: String\l}"];
+Equipaje [label="{Equipaje|tipoMedidaOrigen: Enum\lpesoTotalKg: Decimal?\lpiezas: Integer?\lmaxKgPorPieza: Decimal?\l}"];
+Reserva -> Pasajero [label="1 ↔ 1", arrowhead=none];
+Reserva -> Tarifa [label="1 ↔ 1", arrowhead=none];
+Reserva -> Vuelo [label="1 ↔ 0..*", arrowhead=none];
+Reserva -> Equipaje [label="1 ↔ 1..*", arrowhead=none];
+Adulto -> Pasajero [arrowhead=empty,style=dashed]; Menor -> Pasajero [arrowhead=empty,style=dashed]; Infante -> Pasajero [arrowhead=empty,style=dashed];
+}

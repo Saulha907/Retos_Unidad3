@@ -1,0 +1,14 @@
+digraph G {
+ graph [rankdir=TB, nodesep=.45, ranksep=.65, bgcolor="white"];
+ node [shape=record, fontname="DejaVu Sans", fontsize=10, color="black"];
+ Pelicula [label="{Pelicula|id: Long (PK)\ltitulo: String\lclasificacion: Clasificacion\lduracion: int (min)\lgenero: String\l}"];
+ Sala [label="{Sala|id: Long (PK)\lnumero: Integer\lcapacidad: Integer\l}"];
+ Funcion [label="{Funcion|id: Long (PK)\lfechaHora: LocalDateTime\lprecio: double\l}"];
+ Boleto [label="{Boleto|id: Long (PK)\lfolio: String (único)\lfila: String\lnumero: int\l}"];
+ Cliente [label="{Cliente|id: Long (PK)\lnombre: String\lemail: String\lregistrado: boolean\lpuntos: Integer\l}"];
+ edge [fontname="DejaVu Sans",fontsize=10,dir=none];
+ Pelicula -> Funcion [label="1        0..*"];
+ Sala -> Funcion [label="1        0..*"];
+ Funcion -> Boleto [label="1        0..*"];
+ Cliente -> Boleto [label="0..1       0..*"];
+}

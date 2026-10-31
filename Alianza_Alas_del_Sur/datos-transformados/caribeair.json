@@ -1,0 +1,27 @@
+{
+  "idGlobal": "b7cf2fc4-2410-3617-ab52-cc43f8236ba9",
+  "aerolineaOrigen": "CaribeAir",
+  "idOrigen": "99812",
+  "fechaVuelo": "2026-04-03",
+  "horaLocal": null,
+  "zonaHoraria": null,
+  "vuelos": [],
+  "pasajero": {
+    "nombre": "Ana",
+    "apellido": "Garcia",
+    "tipo": "ADULTO",
+    "edad": null
+  },
+  "tarifa": {
+    "importe": 4500,
+    "moneda": "MXN"
+  },
+  "equipajes": [
+    {
+      "tipoMedidaOrigen": "PIEZAS",
+      "pesoTotalKg": null,
+      "piezas": 1,
+      "maxKgPorPieza": 23
+    }
+  ]
+}

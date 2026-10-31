@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:simpleType name="MonedaType"><xs:restriction base="xs:string"><xs:pattern value="[A-Z]{3}"/></xs:restriction></xs:simpleType>
+  <xs:simpleType name="OrigenType"><xs:restriction base="xs:string"><xs:enumeration value="AeroNorte"/><xs:enumeration value="SurJet"/><xs:enumeration value="CaribeAir"/></xs:restriction></xs:simpleType>
+  <xs:simpleType name="UUIDType"><xs:restriction base="xs:string"><xs:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"/></xs:restriction></xs:simpleType>
+  <xs:simpleType name="MedidaType"><xs:restriction base="xs:string"><xs:enumeration value="KG"/><xs:enumeration value="LB"/><xs:enumeration value="PIEZAS"/></xs:restriction></xs:simpleType>
+  <xs:complexType name="PasajeroBaseType"><xs:sequence><xs:element name="nombre" type="xs:string"/><xs:element name="apellido" type="xs:string"/><xs:element name="edad" type="xs:nonNegativeInteger" minOccurs="0"/></xs:sequence></xs:complexType>
+  <xs:complexType name="AdultoType"><xs:complexContent><xs:extension base="PasajeroBaseType"><xs:attribute name="tipo" type="xs:string" fixed="ADULTO" use="required"/></xs:extension></xs:complexContent></xs:complexType>
+  <xs:complexType name="MenorType"><xs:complexContent><xs:extension base="PasajeroBaseType"><xs:attribute name="tipo" type="xs:string" fixed="MENOR" use="required"/></xs:extension></xs:complexContent></xs:complexType>
+  <xs:complexType name="InfanteType"><xs:complexContent><xs:extension base="PasajeroBaseType"><xs:attribute name="tipo" type="xs:string" fixed="INFANTE" use="required"/></xs:extension></xs:complexContent></xs:complexType>
+  <xs:complexType name="TarifaType"><xs:sequence><xs:element name="importe"><xs:simpleType><xs:restriction base="xs:decimal"><xs:minInclusive value="0"/></xs:restriction></xs:simpleType></xs:element><xs:element name="moneda" type="MonedaType"/></xs:sequence></xs:complexType>
+  <xs:complexType name="EquipajeType"><xs:sequence><xs:element name="tipoMedidaOrigen" type="MedidaType"/><xs:element name="pesoTotalKg" type="xs:decimal" minOccurs="0"/><xs:element name="piezas" type="xs:nonNegativeInteger" minOccurs="0"/><xs:element name="maxKgPorPieza" type="xs:decimal" minOccurs="0"/></xs:sequence></xs:complexType>
+  <xs:complexType name="VueloType"><xs:sequence><xs:element name="numeroVuelo" type="xs:string"/><xs:element name="origen" type="xs:string"/><xs:element name="destino" type="xs:string"/></xs:sequence></xs:complexType>
+  <xs:element name="reserva"><xs:complexType><xs:sequence>
+    <xs:element name="idGlobal" type="UUIDType"/>
+    <xs:element name="aerolineaOrigen" type="OrigenType"/>
+    <xs:element name="idOrigen" type="xs:string"/>
+    <xs:element name="fechaVuelo" type="xs:date"/>
+    <xs:element name="horaLocal" type="xs:time" minOccurs="0"/>
+    <xs:element name="zonaHoraria" type="xs:string" minOccurs="0"/>
+    <xs:element name="pasajero" type="PasajeroBaseType"/>
+    <xs:element name="tarifa" type="TarifaType"/>
+    <xs:element name="vuelos"><xs:complexType><xs:sequence><xs:element name="vuelo" type="VueloType" minOccurs="0" maxOccurs="unbounded"/></xs:sequence></xs:complexType></xs:element>
+    <xs:element name="equipajes"><xs:complexType><xs:sequence><xs:element name="equipaje" type="EquipajeType" minOccurs="1" maxOccurs="unbounded"/></xs:sequence></xs:complexType></xs:element>
+  </xs:sequence></xs:complexType></xs:element>
+</xs:schema>

@@ -1,0 +1,255 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/alas-del-sur/reserva.schema.json",
+  "title": "Reserva canónica - Alianza Alas del Sur",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "idGlobal",
+    "aerolineaOrigen",
+    "idOrigen",
+    "fechaVuelo",
+    "horaLocal",
+    "zonaHoraria",
+    "pasajero",
+    "tarifa",
+    "vuelos",
+    "equipajes"
+  ],
+  "properties": {
+    "idGlobal": {
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    },
+    "aerolineaOrigen": {
+      "type": "string",
+      "enum": [
+        "AeroNorte",
+        "SurJet",
+        "CaribeAir"
+      ]
+    },
+    "idOrigen": {
+      "type": "string",
+      "minLength": 1
+    },
+    "fechaVuelo": {
+      "type": "string",
+      "format": "date"
+    },
+    "horaLocal": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^\\d{2}:\\d{2}:\\d{2}$"
+    },
+    "zonaHoraria": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^(Z|[+-]\\d{2}:\\d{2})$"
+    },
+    "pasajero": {
+      "$ref": "#/$defs/pasajero"
+    },
+    "tarifa": {
+      "$ref": "#/$defs/tarifa"
+    },
+    "vuelos": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/vuelo"
+      }
+    },
+    "equipajes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/equipaje"
+      }
+    }
+  },
+  "$defs": {
+    "pasajero": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "nombre",
+        "apellido",
+        "tipo",
+        "edad"
+      ],
+      "properties": {
+        "nombre": {
+          "type": "string",
+          "minLength": 1
+        },
+        "apellido": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tipo": {
+          "enum": [
+            "ADULTO",
+            "MENOR",
+            "INFANTE"
+          ]
+        },
+        "edad": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "tipo": {
+                "const": "INFANTE"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "edad": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "maximum": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "tipo": {
+                "const": "MENOR"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "edad": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "minimum": 2,
+                "maximum": 11
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "tipo": {
+                "const": "ADULTO"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "edad": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "minimum": 12
+              }
+            }
+          }
+        }
+      ]
+    },
+    "tarifa": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "importe",
+        "moneda"
+      ],
+      "properties": {
+        "importe": {
+          "type": "number",
+          "minimum": 0
+        },
+        "moneda": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        }
+      }
+    },
+    "vuelo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "numeroVuelo",
+        "origen",
+        "destino"
+      ],
+      "properties": {
+        "numeroVuelo": {
+          "type": "string",
+          "minLength": 1
+        },
+        "origen": {
+          "type": "string",
+          "minLength": 1
+        },
+        "destino": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "equipaje": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tipoMedidaOrigen",
+        "pesoTotalKg",
+        "piezas",
+        "maxKgPorPieza"
+      ],
+      "properties": {
+        "tipoMedidaOrigen": {
+          "enum": [
+            "KG",
+            "LB",
+            "PIEZAS"
+          ]
+        },
+        "pesoTotalKg": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "piezas": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "maxKgPorPieza": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": 1,
+  "pelicula": {
+    "id": 1,
+    "titulo": "Aventura en el mar",
+    "clasificacion": "B",
+    "duracion": 120,
+    "genero": "Aventura"
+  },
+  "sala": {
+    "id": 1,
+    "numero": 1,
+    "capacidad": 60
+  },
+  "fechaHora": "2026-11-15T18:00:00",
+  "precio": 100.0
+}

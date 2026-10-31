@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<reserva xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <idGlobal>1d26198b-23db-3e9a-8b37-828fadd582dc</idGlobal>
+  <aerolineaOrigen>SurJet</aerolineaOrigen>
+  <idOrigen>SJ-88412</idOrigen>
+  <fechaVuelo>2026-04-03</fechaVuelo>
+  <horaLocal>08:30:00</horaLocal>
+  <zonaHoraria>-06:00</zonaHoraria>
+  <pasajero xsi:type="AdultoType" tipo="ADULTO">
+    <nombre>Ana</nombre>
+    <apellido>García</apellido>
+    <edad>34</edad>
+  </pasajero>
+  <tarifa>
+    <importe>260</importe>
+    <moneda>USD</moneda>
+  </tarifa>
+  <vuelos/>
+  <equipajes>
+    <equipaje>
+      <tipoMedidaOrigen>LB</tipoMedidaOrigen>
+      <pesoTotalKg>22.6796185</pesoTotalKg>
+    </equipaje>
+  </equipajes>
+</reserva>

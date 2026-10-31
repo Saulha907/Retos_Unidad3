@@ -1,0 +1,27 @@
+{
+  "idGlobal": "1d26198b-23db-3e9a-8b37-828fadd582dc",
+  "aerolineaOrigen": "SurJet",
+  "idOrigen": "SJ-88412",
+  "fechaVuelo": "2026-04-03",
+  "horaLocal": "08:30:00",
+  "zonaHoraria": "-06:00",
+  "vuelos": [],
+  "pasajero": {
+    "nombre": "Ana",
+    "apellido": "García",
+    "tipo": "ADULTO",
+    "edad": 34
+  },
+  "tarifa": {
+    "importe": 260,
+    "moneda": "USD"
+  },
+  "equipajes": [
+    {
+      "tipoMedidaOrigen": "LB",
+      "pesoTotalKg": 22.6796185,
+      "piezas": null,
+      "maxKgPorPieza": null
+    }
+  ]
+}

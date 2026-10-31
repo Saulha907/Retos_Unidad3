@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<reserva xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <idGlobal>b7cf2fc4-2410-3617-ab52-cc43f8236ba9</idGlobal>
+  <aerolineaOrigen>CaribeAir</aerolineaOrigen>
+  <idOrigen>99812</idOrigen>
+  <fechaVuelo>2026-04-03</fechaVuelo>
+  <pasajero xsi:type="AdultoType" tipo="ADULTO">
+    <nombre>Ana</nombre>
+    <apellido>Garcia</apellido>
+  </pasajero>
+  <tarifa>
+    <importe>4500</importe>
+    <moneda>MXN</moneda>
+  </tarifa>
+  <vuelos/>
+  <equipajes>
+    <equipaje>
+      <tipoMedidaOrigen>PIEZAS</tipoMedidaOrigen>
+      <piezas>1</piezas>
+      <maxKgPorPieza>23</maxKgPorPieza>
+    </equipaje>
+  </equipajes>
+</reserva>
